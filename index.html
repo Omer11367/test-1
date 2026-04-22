@@ -3,43 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRADYN - Premium Meta Agency & The Vault</title>
+    <title>BETSCALE - Premium iGaming Agency Accounts</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
+        :root { --main-blue: #007bff; --bg-black: #000000; --card-bg: #0a0a0a; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-black); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* Typography & Effects */
         .hero-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; tracking-tighter; }
         .hero-title span { color: rgba(255, 255, 255, 0.4); }
-        .text-glow { text-shadow: 0 0 30px rgba(255, 255, 255, 0.6); }
-        #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.8; }
+        .text-glow-blue { text-shadow: 0 0 20px rgba(0, 123, 255, 0.7); }
+        .blue-accent { color: var(--main-blue); }
         
-        /* Card & Box Styles */
+        /* Layout Elements */
+        #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.7; }
         .glass-card { background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.4s ease; }
-        .value-card { border-radius: 24px; padding: 2rem; cursor: pointer; position: relative; overflow: hidden; }
-        .value-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.3); }
-        .value-card .glow { position: absolute; bottom: -20px; right: -20px; width: 100px; h: 100px; background: rgba(59, 130, 246, 0.1); blur: 50px; border-radius: 50%; }
         
-        /* Article View Styles */
-        #article-view { display: none; position: fixed; top: 0; left: 0; width: 100%; h: 100%; background: #000; z-index: 100; overflow-y: auto; padding: 10vh 10vw; }
+        /* Free Value Grid (The Vault) */
+        .value-card { border-radius: 24px; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .value-card:hover { transform: translateY(-5px); border-color: rgba(0, 123, 255, 0.5); box-shadow: 0 10px 40px -10px rgba(0, 123, 255, 0.3); }
+        .value-card-image { width: 100%; aspect-ratio: 16/9; object-cover; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .value-card-content { padding: 1.5rem; flex-grow: 1; }
+        
+        /* iGaming Checklist Styles */
+        .check-list li { display: flex; items-center; margin-bottom: 0.75rem; color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; }
+        .check-icon { color: #00FF19; margin-right: 0.75rem; font-weight: bold; }
+
+        /* --- ARTICLE VIEW PANEL STYLES --- */
+        #article-view { display: none; position: fixed; top: 0; left: 0; width: 100%; h: 100%; background: #000; z-index: 100; overflow-y: auto; }
+        
+        /* Main Article Layout */
+        .article-container { display: flex; min-h: 100%; }
+        
+        /* Sidebars with Logo (like image_6.png) */
+        .article-sidebar { width: 15vw; flex-shrink: 0; display: flex; flex-direction: column; items-center; padding-top: 10vh; background: linear-gradient(180deg, #050505 0%, #000 100%); border-right: 1px solid rgba(255, 255, 255, 0.03); }
+        .article-sidebar.right { border-right: none; border-left: 1px solid rgba(255, 255, 255, 0.03); }
+        .sidebar-logo { width: 8vw; max-width: 120px; opacity: 0.3; filter: grayscale(100%); margin-bottom: 10vh; }
+        
+        /* Main Article Content */
+        .article-main { flex-grow: 1; padding: 10vh 5vw; max-w: 70vw; mx-auto; }
         .article-content h1 { font-size: 4rem; font-weight: 800; tracking-tighter; margin-bottom: 2rem; leading-tight; }
-        .article-content h2 { font-size: 2rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1rem; color: #fff; }
+        .article-content h2 { font-size: 2rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
         .article-content p { font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7); margin-bottom: 1.5rem; }
         .article-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.7); }
         .article-content li { margin-bottom: 0.5rem; }
-        .check-icon { color: #00FF19; font-size: 1.2rem; margin-right: 0.75rem; }
         
-        .back-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; rounded-full; cursor: pointer; transition: 0.3s; }
-        .back-btn:hover { background: rgba(255, 255, 255, 0.2); }
+        .back-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 20px; rounded-full; cursor: pointer; transition: 0.3s; color: #fff; font-weight: 600; }
+        .back-btn:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255,255,255,0.2); }
     </style>
 </head>
 <body>
 
     <header class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-xl font-extrabold text-glow tracking-tighter">GRADYN</div>
+            <div class="text-xl font-extrabold tracking-tighter text-glow-blue blue-accent">BETSCALE</div>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-white/50">
                 <a href="#accounts" class="hover:text-white transition">Accounts</a>
-                <a href="#value" class="hover:text-white transition">The Vault</a>
+                <a href="#value" class="hover:text-white transition">Free Value</a>
                 <a href="#results" class="hover:text-white transition">Results</a>
             </nav>
             <button class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-sm hover:bg-white hover:text-black transition duration-300">
@@ -53,13 +74,13 @@
             <div id="vanta-canvas"></div>
             <div class="z-10 mt-20">
                 <span class="inline-block border border-white/10 bg-white/5 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 text-white/70">
-                    <span class="text-glow">⚡</span> Dominating Meta Ads Since 2018
+                    <span class="text-glow-blue">⚔️</span> Premier Partner for Aggressive iGaming Scaling
                 </span>
-                <h1 class="hero-title font-extrabold tracking-tighter mb-8 max-w-6xl mx-auto leading-none">
-                    Unrestricted Bans,<br><span>Premium Agency Accounts</span>
+                <h1 class="hero-title font-extrabold tracking-tighter mb-8 max-w-7xl mx-auto leading-none">
+                    Premium Agency Accounts<br><span>for gambling</span>
                 </h1>
-                <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-12">
-                    Access dedicated, high-limit Meta ad accounts with 24/7 compliance support. Built for aggressive scaling in high-risk verticals.
+                <p class="text-white/70 text-lg md:text-xl max-w-3xl mx-auto mb-12">
+                    Access dedicated, White listed Meta ad accounts with 24/7 compliance support. Built for aggressive scaling in high-risk verticals.
                 </p>
                 <div class="flex flex-col md:flex-row gap-5 justify-center">
                     <button class="bg-white text-black font-bold px-10 py-5 rounded-full hover:scale-105 transition text-lg">Apply for Access</button>
@@ -68,61 +89,73 @@
             </div>
         </section>
 
-        <section id="value" class="py-32 px-6 bg-zinc-950/30">
+        <section id="accounts" class="py-32 px-6 bg-zinc-950/30">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-24">
-                    <span class="text-blue-500 font-bold uppercase tracking-widest text-sm mb-4 inline-block">Free Value</span>
-                    <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-none text-glow">The Vault</h2>
-                    <p class="text-white/60 text-xl max-w-2xl mx-auto mt-6">Exclusive, high-level Case Studies and Frameworks for elite media buyers managing $10M+.</p>
+                    <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-none text-glow-blue blue-accent">Premium Agency Solutions</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-1 gap-8 items-center justify-center">
+                    <div class="ad-card meta-card glass-card rounded-[2rem] p-10 max-w-xl mx-auto">
+                        <div class="flex items-center gap-5 mb-10">
+                            <span class="text-6xl">♾️</span>
+                            <div>
+                                <div class="text-3xl font-bold">Meta</div>
+                                <div class="text-sm text-white/40">Ad Accounts</div>
+                            </div>
+                        </div>
+                        
+                        <ul class="check-list">
+                            <li><span class="check-icon">✔</span> Unlimited Spending Limits</li>
+                            <li><span class="check-icon">✔</span> Lower Risk Of Ban</li>
+                            <li><span class="check-icon">✔</span> Dedicated Compliance Manager</li>
+                            <li><span class="check-icon">✔</span> Dedicated Account Managers</li>
+                            <li><span class="check-icon">✔</span> 24/7 Support</li>
+                            <li><span class="check-icon">✔</span> Bank Transfers & Crypto</li>
+                            <li><span class="check-icon">✔</span> Onboarding within 24h</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="value" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-24">
+                    <span class="blue-accent font-bold uppercase tracking-widest text-sm mb-4 inline-block">Free Value</span>
+                    <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-none text-glow-blue">The Vault</h2>
+                    <p class="text-white/60 text-xl max-w-2xl mx-auto mt-6">Exclusive iGaming Case Studies and Scaling Frameworks.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="glass-card value-card" onclick="openArticle('cloaking')">
-                        <div class="glow"></div>
-                        <div class="text-blue-500 font-bold text-xs uppercase mb-3">Vertical: iGaming</div>
-                        <h3 class="text-2xl font-bold mb-4 leading-tight">Mastering iGaming Cloaking: The 2026 Framework</h3>
-                        <p class="text-white/60 text-sm mb-6">Our exact process for running aggressive gambling offers on Meta without getting instantly disabled.</p>
-                        <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
+                        <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?auto=format&fit=crop&q=80&w=600" alt="iGaming Cloaking" class="value-card-image">
+                        <div class="value-card-content">
+                            <div class="blue-accent font-bold text-xs uppercase mb-3">iGaming: Cloaking</div>
+                            <h3 class="text-2xl font-bold mb-4 leading-tight">Mastering iGaming Cloaking: The 2026 Framework</h3>
+                            <p class="text-white/60 text-sm mb-6">Our exact process for running aggressive gambling offers on Meta without getting instantly disabled.</p>
+                            <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
+                        </div>
                     </div>
 
                     <div class="glass-card value-card" onclick="openArticle('scaling')">
-                        <div class="glow"></div>
-                        <div class="text-blue-500 font-bold text-xs uppercase mb-3">Strategy: Scaling</div>
-                        <h3 class="text-2xl font-bold mb-4 leading-tight">The Road to $100K/Day: Scaling Agency Accounts</h3>
-                        <p class="text-white/60 text-sm mb-6">How to warm up and scale a fresh agency account to six figures in daily spend in under 14 days.</p>
-                        <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
+                        <img src="https://images.unsplash.com/photo-1640340434855-6084b1f4901c?auto=format&fit=crop&q=80&w=600" alt="Scaling $100K" class="value-card-image">
+                        <div class="value-card-content">
+                            <div class="blue-accent font-bold text-xs uppercase mb-3">Scaling: Agency Accounts</div>
+                            <h3 class="text-2xl font-bold mb-4 leading-tight">The Road to $100K/Day: Scaling Agency Accounts</h3>
+                            <p class="text-white/60 text-sm mb-6">How to warm up and scale a fresh agency account to six figures in daily spend in under 14 days.</p>
+                            <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
+                        </div>
                     </div>
 
                     <div class="glass-card value-card" onclick="openArticle('warmup')">
-                        <div class="glow"></div>
-                        <div class="text-blue-500 font-bold text-xs uppercase mb-3">Infrastructure: Warm-up</div>
-                        <h3 class="text-2xl font-bold mb-4 leading-tight">The Anti-Ban Account Structure & Warm-up Protocol</h3>
-                        <p class="text-white/60 text-sm mb-6">A step-by-step guide to structuring your Business Manager to survive aggressive policy changes.</p>
-                        <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
-                    </div>
-                    
-                    <div class="glass-card value-card" onclick="openArticle('bans')">
-                        <div class="glow"></div>
-                        <div class="text-blue-500 font-bold text-xs uppercase mb-3">Policy: Compliance</div>
-                        <h3 class="text-2xl font-bold mb-4 leading-tight">Surviving the Wave: Handling Mass Disabled Accounts</h3>
-                        <p class="text-white/60 text-sm mb-6">Our internal playbook for appealing bans and moving assets during Meta's aggressive compliance sweeps.</p>
-                        <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
-                    </div>
-
-                    <div class="glass-card value-card" onclick="openArticle('creative')">
-                        <div class="glow"></div>
-                        <div class="text-blue-500 font-bold text-xs uppercase mb-3">iGaming: Creative</div>
-                        <h3 class="text-2xl font-bold mb-4 leading-tight">High-Converting iGaming Creatives That Pass Policy</h3>
-                        <p class="text-white/60 text-sm mb-6">Analysis of 50+ winning gambling creatives, showing how to balance conversion and compliance.</p>
-                        <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
-                    </div>
-
-                    <div class="glass-card value-card" onclick="openArticle('crypto')">
-                        <div class="glow"></div>
-                        <div class="text-blue-500 font-bold text-xs uppercase mb-3">Infrastructure: Payments</div>
-                        <h3 class="text-2xl font-bold mb-4 leading-tight">Integrating Crypto Payments for Agency Ad Spend</h3>
-                        <p class="text-white/60 text-sm mb-6">How to use USDT/USDC to fund your agency accounts while maintaining anonymity and speed.</p>
-                        <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600" alt="Anti-Ban Structure" class="value-card-image">
+                        <div class="value-card-content">
+                            <div class="blue-accent font-bold text-xs uppercase mb-3">Infrastructure: Warm-up</div>
+                            <h3 class="text-2xl font-bold mb-4 leading-tight">The Anti-Ban Account Structure & Warm-up Protocol</h3>
+                            <p class="text-white/60 text-sm mb-6">A step-by-step guide to structuring your Business Manager to survive mass compliance sweeps.</p>
+                            <span class="text-white/80 text-xs font-medium underline">Read Full Case Study →</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,164 +163,60 @@
     </div>
 
     <div id="article-view">
-        <div class="max-w-4xl mx-auto article-content">
-            <button class="back-btn mb-12" onclick="closeArticle()">← Back to The Vault</button>
-            <div id="article-data">
-                </div>
+        <div class="article-container">
+            <div class="article-sidebar">
+                <div class="text-4xl font-extrabold blue-accent mb-20 tracking-tighter sidebar-logo">BETSCALE</div>
+                <div class="sidebar-logo text-xl font-bold text-white/10">B</div>
+                <div class="sidebar-logo text-xl font-bold text-white/10">S</div>
+            </div>
+
+            <div class="article-main">
+                <button class="back-btn mb-16" onclick="closeArticle()">← Back to The Vault</button>
+                <div id="article-data" class="article-content">
+                    </div>
+            </div>
+
+            <div class="article-sidebar right">
+                <div class="text-4xl font-extrabold blue-accent mb-20 tracking-tighter sidebar-logo">BETSCALE</div>
+                <div class="sidebar-logo text-xl font-bold text-white/10">B</div>
+                <div class="sidebar-logo text-xl font-bold text-white/10">S</div>
+            </div>
         </div>
     </div>
 
     <footer class="py-12 border-t border-white/5 text-center text-white/20 text-sm">
-        <p>© 2026 Gradyn Agency. Premium Partners. Built with Gemini Pro.</p>
+        <p>© 2026 BETSCALE. Premium iGaming Agency Partner.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
     <script>
-        // Start Vanta background with colorful/moving effect
+        // Start Vanta background (increased speed for more color movement)
         VANTA.FOG({
           el: "#vanta-canvas",
-          mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200.00, minWidth: 200.00,
-          highlightColor: 0x3b82f6, midtoneColor: 0x8b5cf6, lowlightColor: 0x0, baseColor: 0x0,
-          blurFactor: 0.90, speed: 2.0 // Increased speed for more movement
+          mouseControls: true, touchControls: true, minHeight: 200.00, minWidth: 200.00,
+          highlightColor: 0x007bff, midtoneColor: 0x0, lowlightColor: 0x0, baseColor: 0x0,
+          blurFactor: 0.90, speed: 2.5 
         });
 
-        // Article Content Data
+        // Article Content Data (Example, truncated for space)
         const articles = {
             cloaking: `
-                <div class="text-blue-500 font-bold uppercase mb-4">Case Study: iGaming Vertical</div>
+                <div class="blue-accent font-bold uppercase mb-4">iGaming: Cloaking</div>
                 <h1>Mastering iGaming Cloaking:<br> The 2026 Framework</h1>
                 <p class="text-white/90 italic mb-10">Stop getting disabled. Learn our exact internal process for running aggressive gambling offers on Meta without getting instantly disabled.</p>
-                
                 <h2>1. The Reality of iGaming on Meta</h2>
-                <p>Running iGaming (gambling, betting, casino) offers on Meta in 2026 is harder than ever. The AI models are aggressive, and any direct link to a gambling page is an instant permanent ban. You cannot "trick" the system anymore with simple redirectors.</p>
-                <p>Success requires a comprehensive visual identity system that satisfies Meta's compliance models while simultaneously priming the user to convert. We call this "Visual Priming."</p>
-
-                <h2>2. Advanced "White Page" Visual Identity</h2>
-                <p>The core of our strategy is the "White Page" (the compliant page seen by Meta's bots). This page must look like a high-end, legitimate business. Forget about simple quiz pages or generic "blog posts." They are easily flagged.</p>
-                <p>We build full-scale visual systems for fictional brands. If we are promoting a sports betting app, the White Page is a "Sport Analytics Platform" or a "Digital Marketing Agency specializing in Sports Tech."</p>
-                <ul>
-                    <li><strong>Custom Assets:</strong> We use high-quality, custom visual assets—unique icons, consistent color palettes, and custom illustrations. If Meta sees stock images used on 500 other banned pages, you are flagged.</li>
-                    <li><strong>Strategic Layout:</strong> The layout must be clean and modern, matching the design of the actual casino app. This ensures a seamless user journey and lowers the friction once the user is uncloaked.</li>
-                </ul>
-
-                <h2>3. The Cloaking Protocol: Multi-Layered Defense</h2>
-                <p>We don't rely on a single cloaker. We use a proprietary, multi-layered defense system:</p>
-                <ul>
-                    <li><strong>IP Fingerprinting:</strong> Analyzing dozens of factors beyond just the IP address to identify Meta's Review Bots.</li>
-                    <li><strong>User Agent Verification:</strong> Strictly verifying the browser and device type to ensure it's a real user.</li>
-                    <li><strong>JavaScript Challenges:</strong> Injecting silent JavaScript challenges that bots cannot solve.</li>
-                </ul>
-                
-                <h2>4. The Uncloaking Event</h2>
-                <p>The magic happens during the "Uncloaking Event." This is the moment a verified, real user is shown the actual offers. The key is to make this moment frictionless and integrated into the visual system of the White Page. We don't just redirect; we use animated transitions and embedded elements to make it feel like part of the original experience.</p>
+                <p>Running iGaming (gambling, betting, casino) offers on Meta in 2026 is harder than ever. The AI models are aggressive, and any direct link to a gambling page is an instant permanent ban...</p>
             `,
             scaling: `
-                <div class="text-blue-500 font-bold uppercase mb-4">Strategy: Aggressive Scaling</div>
+                <div class="blue-accent font-bold uppercase mb-4">Scaling: Agency Accounts</div>
                 <h1>The Road to $100K/Day:<br> Scaling Agency Accounts</h1>
-                <p class="text-white/90 italic mb-10">How to warm up and scale a fresh agency account to six figures in daily spend in under 14 days without triggering security holds.</p>
-                
-                <h2>1. The Spending Bottleneck</h2>
-                <p>The single biggest mistake media buyers make when they get a new agency account is spending too fast, too early. Meta's algorithms interpret rapid, unearned spending spikes as fraudulent activity, leading to instant security holds or bans.</p>
-                <p>Gradyn accounts are warm, but they are not "invincible." They require a strategic, algorithmically-friendly warm-up protocol.</p>
-
-                <h2>2. The Gradyn Warm-up Protocol (14 Days)</h2>
-                <p>Our goal is to demonstrate legitimacy and establish a high "Trust Score" with Meta. We don't jump straight to $100K/day. We climb.</p>
-                <ul>
-                    <li><strong>Day 1-3: Compliance Priming ($500-$1K/Day)</strong><br>Run low-risk, compliant ads (e.g., brand awareness, non-political blog posts). Focus on high visual quality and perfect compliance.</li>
-                    <li><strong>Day 4-7: Gradual Acceleration ($2K-$5K/Day)</strong><br>Introduce low-risk conversion campaigns. Increase spend by 20-30% daily.</li>
-                    <li><strong>Day 8-11: Aggressive Testing ($10K-$30K/Day)</strong><br>Testing scale with CBO/Advantage+ campaigns. Spend can jump faster here, up to 50% daily if performance holds.</li>
-                    <li><strong>Day 12-14: The Final Push ($50K-$100K+/Day)</strong><br>Identify winning assets and consolidate spend. Push limits aggressively but maintain 24/7 compliance monitoring.</li>
-                </ul>
-
-                <h2>3. Strategic Visual Consolidation</h2>
-                <p>At high scale, visual consistency becomes paramount. If you are running thousands of different creatives, Meta's models struggle to find patterns, increasing volatility. We use a strategy called "Visual Consolidation." We identify the core visual elements that convert and replicate them across fewer, higher-spending ad sets.</p>
-                
-                <h2>4. The Human Element: Gradyn Compliance</h2>
-                <p>Our dedicated compliance managers are monitoring your account 24/7. When you are pushing $100K/day, a single disallowed word or visual element can cost you $50K in downtime. We catch errors before they flag the automated systems.</p>
+                <p>Content for Scaling goes here...</p>
             `,
             warmup: `
-                <div class="text-blue-500 font-bold uppercase mb-4">Infrastructure: Strategic Structure</div>
-                <h1>The Anti-Ban Account Structure &<br> Warm-up Protocol</h1>
-                <p class="text-white/90 italic mb-10">A step-by-step guide to structuring your Business Manager and assets to survive mass compliance sweeps and algorithmic shifts.</p>
-                
-                <h2>1. The Concept of "Asset Isolation"</h2>
-                <p>Most agencies centralize their risk. They use one Business Manager for everything, meaning when one account goes down, the entire infrastructure is at risk. Our philosophy is different: **Total Asset Isolation**.</p>
-                <p>We treat every major ad account as a self-contained ecosystem. The data, the pixel, and the visual assets are isolated to minimize cross-contamination.</p>
-
-                <h2>2. The BM "Shielding" Structure</h2>
-                <p>We create "Shielding" BMs. These BMs hold no actual assets but are used solely to manage access. This provides an extra layer of protection against direct bans.</p>
-                <ul>
-                    <li><strong>Primary Shield BM:</strong> Holds the primary, clean Gradyn agency account.</li>
-                    <li><strong>Asset Isolation BMs:</strong> Each isolated ecosystem (Account A + Pixel A + Assets A) has its own dedicated BM.</li>
-                </ul>
-
-                <h2>3. Visual Warm-up Priming</h2>
-                <p>Warm-up isn't just about spending money; it's about "Visual Priming." When an account is new, Meta's image recognition models are highly sensitive. We prime the algorithm by starting with high-quality, visually clean assets.</p>
-                <ul>
-                    <li><strong>Consistent Branding:</strong> Use a consistent color scheme, unique custom iconography, and a clear visual language from day one. This establishes a recognizable brand identity that the algorithm can categorize.</li>
-                    <li><strong>High-Resolution Graphics:</strong> Ensure all visual content is high-resolution. Grainy or low-quality images are often associated with low-quality or fraudulent advertisers.</li>
-                </ul>
-            `,
-            bans: `
-                <div class="text-blue-500 font-bold uppercase mb-4">Policy & Crisis Management</div>
-                <h1>Surviving the Wave:<br> Handling Mass Disabled Accounts</h1>
-                <p class="text-white/90 italic mb-10">Our internal playbook for appealing bans and rapidly migrating assets during Meta's aggressive compliance sweeps.</p>
-                
-                <h2>1. The Myth of the "Invincible Account"</h2>
-                <p>No ad account is invincible. If you are scaling aggressively, especially in high-risk verticals, you will get disabled at some point. The key to success isn't avoiding bans entirely; it's managing them faster and more efficiently than your competitors.</p>
-                <p>A disabled account is a setback, not a death sentence.</p>
-
-                <h2>2. Immediate Response Protocol (T-Minus 0 Hours)</h2>
-                <p>When an account is disabled, the first 6 hours are critical. If you panic or appeal poorly, you lose the asset forever.</p>
-                <ul>
-                    <li><strong>Step 1: Compliance Audit:</strong> Before doing anything, our internal compliance team audits the account. We identify the *exact* creative or copy that triggered the flag. We don't appeal until we know why it was banned.</li>
-                    <li><strong>Step 2: Asset Migration:</strong> We immediately move all high-performing assets (custom audiences, pixels, winning creatives) to a backup Gradyn account. Your spending downtime must be minimal.</li>
-                </ul>
-
-                <h2>3. The Art of the Appeal</h2>
-                <p>We don't use the automated appeal button. Our compliance managers use priority support channels and custom-written appeals based on our analysis.</p>
-                <p>We acknowledge the potential policy violation, explain the compliant intention, and provide proof of the rigorous compliance process. This structured approach has a 300% higher success rate than simple automated appeals.</p>
-            `,
-            creative: `
-                <div class="text-blue-500 font-bold uppercase mb-4">iGaming Creative Analysis</div>
-                <h1>High-Converting iGaming Creatives<br> That Pass Policy</h1>
-                <p class="text-white/90 italic mb-10">Detailed analysis of 50+ winning gambling creatives, showing exactly how to balance aggressive conversion with necessary compliance.</p>
-                
-                <h2>1. The Visual Paradox of iGaming</h2>
-                <p>iGaming creatives must be exciting, visually rich, and focus on the thrill of winning, yet Meta's policies are designed to suppress anything that encourages gambling. How do you reconcile these two competing goals?</p>
-                <p>Success lies in using powerful, compliant visual metaphors and subtle visual cues.</p>
-
-                <h2>2. Winning Visual Patterns</h2>
-                <p>Our analysis of high-performing iGaming creatives revealed several key visual patterns:</p>
-                <ul>
-                    <li><strong>The "Celebration" Angle:</strong> Instead of showing the game (slots, poker), show the *result*. Focus on high-quality, authentic-looking videos of diverse people celebrating a major win. This passes policy because it focuses on the emotion of winning, not the act of gambling.</li>
-                    <li><strong>Custom Illustrative Worlds:</strong> We create unique, visually stunning illustrated worlds. If you are promoting a casino with a space theme, build a full cosmic visual system. Meta is more lenient on artistic, illustrated content than realistic depictions of gambling equipment.</li>
-                    <li><strong>The "Strategy" Framework:</strong> Frame the app as a "Sport Analytics Platform." Use clean, data-driven visuals—graphs, statistics, and high-quality UI mockups. primed for a compliant White Page.</li>
-                </ul>
-
-                <h2>3. Visual Priming for Conversion</h2>
-                <p>The creative must prime the user for the visual experience they will encounter on the final uncloaked landing page. Use consistent color palettes, fonts, and design elements across the ad and the landing page to lower friction and improve conversion.</p>
-            `,
-            crypto: `
-                <div class="text-blue-500 font-bold uppercase mb-4">Infrastructure: Advanced Payments</div>
-                <h1>Integrating Crypto Payments for Agency<br> Ad Spend</h1>
-                <p class="text-white/90 italic mb-10">How to use USDT and USDC to fund your agency accounts while maintaining anonymity, reducing fees, and ensuring 24/7 speed.</p>
-                
-                <h2>1. The Traditional Payment Bottleneck</h2>
-                <p>Traditional banking systems (wires, ACH) are slow, expensive, and introduce significant compliance friction for international agencies. When you are managing $50M/month, a 3-day wire delay is unacceptable.</p>
-                <p>Crypto provides the speed and flexibility that aggressive scaling demands.</p>
-
-                <h2>2. The Gradyn Crypto Funding Model</h2>
-                <p>We provide a streamlined, secure system for funding your agency accounts using top-tier stablecoins (USDT/USDC).</p>
-                <ul>
-                    <li><strong>Institutional Liquidity Providers:</strong> We work with major OTC desks to ensure we can handle any volume of crypto-to-fiat conversion without affecting market prices.</li>
-                    <li><strong>Dedicated Wallets:</strong> Each agency is assigned unique funding wallets on multiple chains (Ethereum, Tron, Solana) for asset isolation and transparent accounting.</li>
-                </ul>
-
-                <h2>3. Compliance and Security</h2>
-                <p>Using crypto doesn't mean bypassing compliance. We use advanced on-chain analysis tools to ensure that all incoming funds are clean and compliant with international anti-money laundering regulations.</p>
-                <p>You get the speed of crypto with the safety of a regulated financial framework.</p>
+                <div class="blue-accent font-bold uppercase mb-4">Infrastructure: Warm-up</div>
+                <h1>The Anti-Ban Account Structure & Warm-up Protocol</h1>
+                <p>Content for Warm-up goes here...</p>
             `
         };
 
