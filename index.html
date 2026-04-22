@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRADYN - Premium Ad Accounts</title>
+    <title>GRADYN - Premium Ad Accounts & Value</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -13,7 +13,6 @@
         .text-glow { text-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
         #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         
-        /* Custom Ad Account Card Glows */
         .ad-card { 
             position: relative; border-radius: 20px; padding: 2.5rem; background: rgba(10, 10, 10, 0.6); 
             border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.5s ease; 
@@ -21,17 +20,23 @@
         .meta-card:hover { box-shadow: 0 10px 100px -10px rgba(0, 129, 255, 0.3); border-color: rgba(0, 129, 255, 0.5); }
         .check-icon { color: #00FF19; font-size: 1.2rem; margin-right: 0.75rem; }
 
+        /* Free Value Box Effect */
+        .value-box {
+            background: linear-gradient(145deg, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
 <body>
 
     <header class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-xl font-extrabold text-glow">GRADYN</div>
+            <div class="text-xl font-extrabold text-glow tracking-tighter">GRADYN</div>
             <nav class="hidden md:flex space-x-8 text-sm font-medium text-white/50">
                 <a href="#accounts" class="hover:text-white transition">Accounts</a>
+                <a href="#value" class="hover:text-white transition">Free Value</a>
                 <a href="#results" class="hover:text-white transition">Results</a>
-                <a href="#faq" class="hover:text-white transition">FAQ</a>
             </nav>
             <button class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-sm hover:bg-white hover:text-black transition duration-300">
                 Get Access
@@ -40,19 +45,17 @@
     </header>
 
     <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
-        <div id="vanta-canvas"></div> <div class="z-10 mt-20">
+        <div id="vanta-canvas"></div>
+        <div class="z-10 mt-20">
             <span class="inline-block border border-white/10 bg-white/5 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 text-white/70">
-                <span class="text-glow">⚡</span> Unleash Your Spending Power
+                <span class="text-glow">⚡</span> Trusted by $50M+/Month Spenders
             </span>
-            
             <h1 class="hero-title font-extrabold tracking-tighter mb-8 max-w-6xl mx-auto">
                 No Bans, Just<br><span>Premium Meta Accounts</span>
             </h1>
-            
             <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-12">
-                Get dedicated, managed ad accounts with unlimited spending limits and 24/7 compliance support. Designed for agencies managing heavy volume.
+                Get dedicated, managed ad accounts with unlimited spending limits and 24/7 compliance support. Built for elite media buyers.
             </p>
-            
             <div class="flex flex-col md:flex-row gap-5 justify-center">
                 <button class="bg-white text-black font-bold px-10 py-5 rounded-full hover:scale-105 transition text-lg">Apply for Access</button>
                 <button class="bg-white/5 border border-white/10 font-bold px-10 py-5 rounded-full hover:bg-white/10 transition text-lg">See Results</button>
@@ -60,50 +63,56 @@
         </div>
     </section>
 
-    <section id="results" class="py-32 bg-zinc-950/40">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-5xl font-extrabold mb-16 tracking-tight text-glow">Agency Case Studies</h2>
-            
-            <div class="grid md:grid-cols-10 gap-6">
-                <div class="md:col-span-4 rounded-3xl overflow-hidden aspect-[4/5] bg-zinc-900 border border-white/5 group">
-                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
-                </div>
+    <section id="value" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="value-box rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/20 blur-[100px]"></div>
                 
-                <div class="md:col-span-6 flex flex-col gap-6">
-                    <div class="rounded-3xl overflow-hidden aspect-video bg-zinc-900 border border-white/5 group">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
+                <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <div class="text-blue-500 font-bold uppercase tracking-widest text-sm mb-4">Free Resource</div>
+                        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">The 2026 Meta Scaling Framework</h2>
+                        <p class="text-white/60 text-lg mb-8">
+                            Stop getting disabled. Learn our exact internal process for managing $50M/month in ad spend without losing a single account.
+                        </p>
+                        <ul class="space-y-3 mb-10 text-sm text-white/80">
+                            <li class="flex items-center"><span class="check-icon">✔</span> The "Anti-Ban" Account Structure</li>
+                            <li class="flex items-center"><span class="check-icon">✔</span> Unlimited Spend Warm-up Protocol</li>
+                            <li class="flex items-center"><span class="check-icon">✔</span> 3 Hidden Policy Secrets</li>
+                        </ul>
                     </div>
-                    
-                    <div class="rounded-3xl overflow-hidden aspect-video bg-zinc-900 border border-white/5 group relative">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
+
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl">
+                        <h3 class="text-xl font-bold mb-6">Get Instant Access</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Full Name" class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 focus:border-white transition outline-none">
+                            <input type="email" placeholder="Business Email" class="w-full bg-black/50 border border-white/10 rounded-xl px-5 py-4 focus:border-white transition outline-none">
+                            <button class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition mt-4">
+                                Send Me The Guide
+                            </button>
+                        </form>
+                        <p class="text-[10px] text-white/30 mt-4 text-center">We hate spam. Your data is 100% secure.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="accounts" class="py-32 px-6">
+    <section id="accounts" class="py-32 px-6 bg-zinc-950/20">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-center text-5xl font-extrabold tracking-tight mb-4 leading-tight">Premium Meta Ad Accounts</h2>
-            <p class="text-center text-white/50 text-xl max-w-2xl mx-auto mb-20">Gradyn provides dedicated, agency-grade Meta accounts to remove spending bottlenecks and lower risk.</p>
-            
-            <div class="grid md:grid-cols-3 gap-8 items-center justify-center">
-                <div class="ad-card meta-card">
+            <h2 class="text-center text-5xl font-extrabold tracking-tight mb-20 text-glow">Agency Solutions</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="ad-card meta-card md:col-start-2">
                     <div class="flex items-center gap-4 mb-8">
                         <img src="https://img.icons8.com/fluent/96/000000/facebook-new.png" class="w-16" alt="Meta Logo">
-                        <div>
-                            <div class="text-3xl font-bold">Gradyn Meta</div>
-                            <div class="text-sm text-white/40">Premium Agency Account</div>
-                        </div>
+                        <div><div class="text-3xl font-bold">Gradyn Meta</div><div class="text-sm text-white/40">Premium Agency</div></div>
                     </div>
-                    
                     <ul class="space-y-4 text-white/70">
                         <li><span class="check-icon">✔</span> Unlimited Spending Limits</li>
                         <li><span class="check-icon">✔</span> Extremely Lower Risk Of Ban</li>
                         <li><span class="check-icon">✔</span> Dedicated Compliance Manager</li>
-                        <li><span class="check-icon">✔</span> Priority Support from Meta Partner</li>
+                        <li><span class="check-icon">✔</span> Priority Support from Meta</li>
                         <li><span class="check-icon">✔</span> Bank Transfers & Crypto</li>
-                        <li><span class="check-icon">✔</span> Active warm-up period</li>
                     </ul>
                 </div>
             </div>
@@ -111,26 +120,17 @@
     </section>
 
     <footer class="py-12 border-t border-white/5 text-center text-white/20 text-sm">
-        <p>© 2026 Gradyn Agency. Premium Partners. Built with Gemini Pro.</p>
+        <p>© 2026 Gradyn Agency. Global Media Buying Partners.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
     <script>
-        // Start the moving Fog background
         VANTA.FOG({
           el: "#vanta-canvas",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          highlightColor: 0x3b82f6,
-          midtoneColor: 0x0,
-          lowlightColor: 0x0,
-          baseColor: 0x0,
-          blurFactor: 0.90,
-          speed: 1.50
+          mouseControls: true, touchControls: true, minHeight: 200.00, minWidth: 200.00,
+          highlightColor: 0x222222, midtoneColor: 0x0, lowlightColor: 0x0, baseColor: 0x0,
+          blurFactor: 0.90, speed: 1.0
         });
     </script>
 </body>
