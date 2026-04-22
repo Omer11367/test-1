@@ -3,107 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BETSCALE - The Vault (Full Content)</title>
+    <title>BETSCALE - Premium iGaming Agency Accounts</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --main-blue: #007bff; --bg-black: #000000; --card-bg: #0a0a0a; }
+        :root { --main-blue: #007bff; --bg-black: #000000; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-black); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Layout & Effects */
-        .hero-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; tracking-tighter; }
-        .text-glow-blue { text-shadow: 0 0 25px rgba(0, 123, 255, 0.6); }
+        /* Effects */
+        .hero-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; tracking-tighter; }
+        .hero-title span { color: rgba(255, 255, 255, 0.4); }
         .blue-accent { color: var(--main-blue); }
-        #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.6; }
-        
-        .glass-card { background: rgba(10, 10, 10, 0.4); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); }
-        .value-card { border-radius: 24px; cursor: pointer; overflow: hidden; transition: 0.3s; height: 100%; }
-        .value-card:hover { transform: translateY(-5px); border-color: var(--main-blue); }
+        .text-glow-blue { text-shadow: 0 0 25px rgba(0, 123, 255, 0.6); }
+        #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-        /* Article View with Sidebars */
-        #article-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 100; overflow-y: auto; }
+        /* Laptop 3D Section */
+        .laptop-section { position: relative; min-height: 120vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #030303; padding: 100px 0; }
+        .laptop-wrapper { position: relative; width: 95%; max-width: 1300px; transition: transform 0.5s ease; }
+        .laptop-img { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 80px rgba(0, 123, 255, 0.15)); }
+        
+        /* Screen Content */
+        .screen-content {
+            position: absolute;
+            top: 7.5%; left: 12.3%; width: 75.4%; height: 76%;
+            background: #080808; overflow-y: auto; padding: 3vw;
+            border-radius: 5px; border: 1px solid rgba(255,255,255,0.05);
+        }
+        .screen-content::-webkit-scrollbar { width: 4px; }
+        .screen-content::-webkit-scrollbar-thumb { background: var(--main-blue); border-radius: 10px; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+        .feature-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px; }
+        .check-icon { color: #00FF19; font-weight: bold; font-size: 1.2rem; }
+
+        /* Free Value Grid */
+        .value-card { background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; overflow: hidden; transition: 0.4s; cursor: pointer; }
+        .value-card:hover { transform: translateY(-10px); border-color: var(--main-blue); box-shadow: 0 20px 40px -10px rgba(0, 123, 255, 0.2); }
+
+        /* Article View with Sidebars (image_6 style) */
+        #article-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; overflow-y: auto; }
         .article-container { display: flex; min-height: 100vh; }
-        .article-sidebar { width: 15vw; flex-shrink: 0; background: linear-gradient(180deg, #050505 0%, #000 100%); display: flex; flex-direction: column; items: center; padding-top: 5vh; border-right: 1px solid rgba(255,255,255,0.03); }
+        .article-sidebar { width: 15vw; flex-shrink: 0; background: #050505; display: flex; flex-direction: column; items: center; padding-top: 10vh; opacity: 0.15; border-right: 1px solid rgba(255,255,255,0.03); }
         .article-sidebar.right { border-right: none; border-left: 1px solid rgba(255,255,255,0.03); }
-        .sidebar-logo { width: 60%; opacity: 0.1; filter: grayscale(100%); margin-bottom: 5vh; }
-        .article-main { flex-grow: 1; padding: 5vh 10%; max-width: 1200px; }
+        .sidebar-logo { font-size: 3vw; font-weight: 900; color: var(--main-blue); transform: rotate(90deg); margin-bottom: 15vh; white-space: nowrap; }
+        .article-main { flex-grow: 1; padding: 10vh 8%; max-width: 1100px; }
         
-        .article-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 2rem; }
-        .article-content h2 { font-size: 1.8rem; font-weight: 700; color: var(--main-blue); margin-top: 2.5rem; margin-bottom: 1rem; }
-        .article-content p { font-size: 1.15rem; line-height: 1.8; color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
-        .article-content li { margin-bottom: 0.8rem; color: rgba(255,255,255,0.7); font-size: 1.1rem; }
-        
-        .back-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 24px; border-radius: 50px; cursor: pointer; color: #fff; font-weight: 700; margin-bottom: 3rem; }
+        .article-content h1 { font-size: 4rem; font-weight: 800; margin-bottom: 2rem; tracking-tighter; }
+        .article-content h2 { font-size: 2rem; font-weight: 700; color: var(--main-blue); margin-top: 3rem; margin-bottom: 1.5rem; }
+        .article-content p { font-size: 1.2rem; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; }
+        .back-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 30px; border-radius: 50px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
     </style>
 </head>
 <body>
 
     <header class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-extrabold tracking-tighter text-glow-blue blue-accent">BETSCALE</div>
-            <nav class="hidden md:flex space-x-10 text-sm font-medium text-white/50">
+            <div class="text-2xl font-extrabold blue-accent tracking-tighter text-glow-blue">BETSCALE</div>
+            <nav class="hidden md:flex space-x-10 text-sm font-medium text-white/40 uppercase tracking-widest">
                 <a href="#accounts" class="hover:text-white transition">Accounts</a>
-                <a href="#value" class="hover:text-white transition">The Vault</a>
-                <button class="bg-blue-600 px-6 py-2 rounded-full text-xs font-bold">Apply Now</button>
+                <a href="#value" class="hover:text-white transition">Free Value</a>
+                <button class="bg-blue-600 px-6 py-2 rounded-full font-bold text-white shadow-[0_0_20px_rgba(0,123,255,0.3)]">Get Access</button>
             </nav>
         </div>
     </header>
 
     <div id="main-content">
-        <section class="relative h-[80vh] flex flex-col items-center justify-center text-center px-6">
+        <section class="relative h-screen flex flex-col items-center justify-center text-center px-6">
             <div id="vanta-canvas"></div>
-            <h1 class="hero-title font-extrabold tracking-tighter mb-6">THE<br><span class="blue-accent">VAULT</span></h1>
-            <p class="text-white/50 text-xl max-w-2xl mx-auto">Elite iGaming Case Studies & Scaling Frameworks.</p>
+            <div class="z-10">
+                <h1 class="hero-title font-extrabold tracking-tighter mb-8">
+                    Premium Agency Accounts<br><span>for gambling</span>
+                </h1>
+                <p class="text-white/60 text-xl md:text-2xl max-w-3xl mx-auto mb-12">
+                    Access dedicated, <span class="text-white border-b border-blue-500">White listed</span> Meta ad accounts with 24/7 compliance support. Built for aggressive scaling in high-risk verticals.
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button class="bg-white text-black px-12 py-5 rounded-full font-black text-xl hover:scale-105 transition">Apply for Access</button>
+                    <button class="border border-white/20 px-12 py-5 rounded-full font-black text-xl hover:bg-white/5 transition">Join Telegram</button>
+                </div>
+            </div>
         </section>
 
-        <section id="value" class="py-24 px-6">
-            <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-                <div class="glass-card value-card" onclick="openArticle('cloaking')">
-                    <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover opacity-60">
-                    <div class="p-6">
-                        <span class="blue-accent text-xs font-bold uppercase tracking-widest">iGaming</span>
-                        <h3 class="text-xl font-bold mt-2">Mastering iGaming Cloaking 2026</h3>
-                        <p class="text-white/40 text-sm mt-4">The technical framework for bypassing Meta's bot reviews.</p>
+        <section id="accounts" class="laptop-section">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-7xl font-black text-glow-blue mb-4">Premium Agency Solutions</h2>
+                <p class="text-white/30 text-xl">Inside our infrastructure</p>
+            </div>
+            
+            <div class="laptop-wrapper">
+                <img src="https://www.pngmart.com/files/1/Laptop-PNG-Transparent-Image.png" class="laptop-img">
+                <div class="screen-content">
+                    <div class="flex items-center gap-6 mb-10 border-b border-white/5 pb-8">
+                        <div class="text-5xl">♾️</div>
+                        <div>
+                            <h3 class="text-4xl font-bold">Meta Priority</h3>
+                            <p class="blue-accent font-bold uppercase text-xs tracking-widest">Global Ad Infrastructure</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">US accounts</span></div>
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">No limit</span></div>
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Onboard under 12 hours</span></div>
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Free and unlimited replacements</span></div>
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Dedicated Compliance Manager</span></div>
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">24/7 Priority Support</span></div>
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Bank Transfers & Crypto Funding</span></div>
+                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">White-listed BM Assets</span></div>
                     </div>
                 </div>
-                <div class="glass-card value-card" onclick="openArticle('scaling')">
-                    <img src="https://images.unsplash.com/photo-1640340434855-6084b1f4901c?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover opacity-60">
-                    <div class="p-6">
-                        <span class="blue-accent text-xs font-bold uppercase tracking-widest">Strategy</span>
-                        <h3 class="text-xl font-bold mt-2">Road to $100K/Day Scaling</h3>
-                        <p class="text-white/40 text-sm mt-4">Scaling high-limit agency accounts without security holds.</p>
-                    </div>
+            </div>
+        </section>
+
+        <section id="value" class="py-40 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-20">
+                    <span class="blue-accent font-black uppercase text-sm tracking-widest">Knowledge Base</span>
+                    <h2 class="text-6xl font-black tracking-tighter text-glow-blue">Free Value</h2>
                 </div>
-                <div class="glass-card value-card" onclick="openArticle('warmup')">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover opacity-60">
-                    <div class="p-6">
-                        <span class="blue-accent text-xs font-bold uppercase tracking-widest">Infrastructure</span>
-                        <h3 class="text-xl font-bold mt-2">Anti-Ban BM Architecture</h3>
-                        <p class="text-white/40 text-sm mt-4">How to structure your assets to survive mass sweeps.</p>
+                
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="value-card" onclick="openArticle('cloaking')">
+                        <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=600" class="w-full h-56 object-cover grayscale hover:grayscale-0 transition duration-500">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4">iGaming Cloaking 2026</h3>
+                            <p class="text-white/50 text-sm">Server-side rendering framework for gambling ads.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="glass-card value-card" onclick="openArticle('creative')">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover opacity-60">
-                    <div class="p-6">
-                        <span class="blue-accent text-xs font-bold uppercase tracking-widest">iGaming</span>
-                        <h3 class="text-xl font-bold mt-2">Winning iGaming Creatives</h3>
-                        <p class="text-white/40 text-sm mt-4">Psychological triggers that pass policy and convert.</p>
+                    <div class="value-card" onclick="openArticle('scaling')">
+                        <img src="https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=600" class="w-full h-56 object-cover grayscale hover:grayscale-0 transition duration-500">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4">Scaling to $100K/Day</h3>
+                            <p class="text-white/50 text-sm">Aggressive scaling on high-limit accounts.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="glass-card value-card" onclick="openArticle('crisis')">
-                    <img src="https://images.unsplash.com/photo-1454165833767-129674912b01?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover opacity-60">
-                    <div class="p-6">
-                        <span class="blue-accent text-xs font-bold uppercase tracking-widest">Management</span>
-                        <h3 class="text-xl font-bold mt-2">Asset Migration Playbook</h3>
-                        <p class="text-white/40 text-sm mt-4">What to do when your main infrastructure goes down.</p>
-                    </div>
-                </div>
-                <div class="glass-card value-card" onclick="openArticle('crypto')">
-                    <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover opacity-60">
-                    <div class="p-6">
-                        <span class="blue-accent text-xs font-bold uppercase tracking-widest">Payments</span>
-                        <h3 class="text-xl font-bold mt-2">Crypto Ad-Spend Funding</h3>
-                        <p class="text-white/40 text-sm mt-4">Integrating USDT/USDC for rapid account top-ups.</p>
+                    <div class="value-card" onclick="openArticle('warmup')">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600" class="w-full h-56 object-cover grayscale hover:grayscale-0 transition duration-500">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4">Anti-Ban Architecture</h3>
+                            <p class="text-white/50 text-sm">Protecting pixels and assets in mass sweeps.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,14 +152,18 @@
     <div id="article-view">
         <div class="article-container">
             <div class="article-sidebar">
-                <div class="text-2xl font-black blue-accent rotate-90 mt-20 opacity-20">BETSCALE</div>
+                <div class="sidebar-logo">BETSCALE</div>
+                <div class="sidebar-logo">BETSCALE</div>
             </div>
+            
             <div class="article-main">
-                <button class="back-btn" onclick="closeArticle()">← Back to Vault</button>
+                <button class="back-btn" onclick="closeArticle()">← Back to Site</button>
                 <div id="article-data" class="article-content"></div>
             </div>
+            
             <div class="article-sidebar right">
-                <div class="text-2xl font-black blue-accent -rotate-90 mt-20 opacity-20">BETSCALE</div>
+                <div class="sidebar-logo" style="transform: rotate(-90deg)">BETSCALE</div>
+                <div class="sidebar-logo" style="transform: rotate(-90deg)">BETSCALE</div>
             </div>
         </div>
     </div>
@@ -132,31 +175,13 @@
 
         const articles = {
             cloaking: `<h1>Mastering iGaming Cloaking 2026</h1>
-                <p>Running iGaming on Meta requires a multi-layered cloaking approach. In 2026, Meta uses advanced AI to identify redirect patterns. Our framework focuses on <strong>Server-Side Rendering (SSR)</strong> for white-pages.</p>
-                <h2>1. The White Page Architecture</h2>
-                <p>Don't use generic blogs. Build fully functional "Sports Tech" or "News" sites using high-resolution custom assets. Meta's bots check for image uniqueness—if your stock photo is used on 1000 banned sites, you're flagged.</p>
-                <ul>
-                    <li>Custom JS challenges for bot identification.</li>
-                    <li>IP fingerprinting beyond standard blacklists.</li>
-                </ul>`,
+                <p>Running gambling offers requires a multi-layered cloaking approach. In 2026, Meta uses AI to identify redirect patterns. Our framework focuses on <strong>Server-Side Rendering (SSR)</strong>.</p>
+                <h2>1. White Page Strategy</h2>
+                <p>Build fully functional "Sports Tech" sites. Meta's bots check for image uniqueness—if your stock photo is used on banned sites, you're flagged.</p>`,
             scaling: `<h1>Road to $100K/Day Scaling</h1>
-                <p>Scaling to $100K/day isn't about the budget—it's about the <strong>Trust Score</strong> of your agency account. Gradyn accounts start with a high baseline, but you must follow the acceleration curve.</p>
-                <h2>2. The Acceleration Curve</h2>
-                <p>Spend jumps should not exceed 40% daily for the first 5 days. Once the account clears the first $10K in spend, the algorithmic security holds loosen significantly.</p>`,
+                <p>Scaling to $100K/day is about the <strong>Trust Score</strong>. Spend jumps should not exceed 40% daily for the first 5 days.</p>`,
             warmup: `<h1>Anti-Ban BM Architecture</h1>
-                <p>The key to survival is <strong>Asset Isolation</strong>. Never house your Pixel, Domain, and Ad Account in the same BM without shielding.</p>
-                <h2>3. Shielding Strategy</h2>
-                <p>Use a "Golden BM" to hold the Pixel and Domain. Use secondary Gradyn accounts to run the actual traffic. This ensures that a ban on the ad-account level doesn't kill your data assets.</p>`,
-            creative: `<h1>Winning iGaming Creatives</h1>
-                <p>Meta's OCR (Optical Character Recognition) scans every frame of your video. To pass, focus on <strong>Metaphorical Success</strong> rather than direct gambling assets.</p>
-                <ul>
-                    <li>Show the result (lifestyle, emotion) not the mechanism (slots, cards).</li>
-                    <li>Use custom 3D animations—unique pixels are less likely to be flagged by compliance AI.</li>
-                </ul>`,
-            crisis: `<h1>Asset Migration Playbook</h1>
-                <p>In a mass sweep, speed is everything. You need a <strong>Hot-Swap</strong> infrastructure. This article details how we use automated scripts to move custom audiences and pixels to new accounts in under 15 minutes.</p>`,
-            crypto: `<h1>Crypto Ad-Spend Funding</h1>
-                <p>Managing liquidity is a bottleneck. We use USDT/USDC to bypass bank delays. By using private wallet structures, we ensure that your funding source is decoupled from the ad infrastructure, reducing cross-account contamination.</p>`
+                <p>Isolation is key. Never house your Pixel and Ad Account in the same BM without shielding.</p>`
         };
 
         function openArticle(id) {
