@@ -1,176 +1,137 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolite Clone - Preview</title>
+    <title>GRADYN - Premium Ad Accounts</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            scroll-behavior: smooth;
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; }
+        .hero-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; }
+        .hero-title span { color: rgba(255, 255, 255, 0.4); }
+        .text-glow { text-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+        #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        
+        /* Custom Ad Account Card Glows */
+        .ad-card { 
+            position: relative; border-radius: 20px; padding: 2.5rem; background: rgba(10, 10, 10, 0.6); 
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.5s ease; 
         }
-        .glow-bg {
-            background: radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0) 50%);
-        }
-        .marquee {
-            display: flex;
-            overflow: hidden;
-            user-select: none;
-            gap: 2rem;
-        }
-        .marquee-content {
-            flex-shrink: 0;
-            display: flex;
-            justify-content: space-around;
-            min-width: 100%;
-            gap: 2rem;
-            animation: scroll 20s linear infinite;
-        }
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
-        }
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-        }
+        .meta-card:hover { box-shadow: 0 10px 100px -10px rgba(0, 129, 255, 0.3); border-color: rgba(0, 129, 255, 0.5); }
+        .check-icon { color: #00FF19; font-size: 1.2rem; margin-right: 0.75rem; }
+
     </style>
 </head>
 <body>
 
-    <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-black/50 backdrop-blur-md">
+    <header class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-xl font-bold tracking-tighter">PORTFOLITE</div>
-            <nav class="hidden md:flex space-x-8 space-x-reverse text-sm font-medium text-white/60">
-                <a href="#services" class="hover:text-white transition">Services</a>
-                <a href="#projects" class="hover:text-white transition">Projects</a>
-                <a href="#about" class="hover:text-white transition">About</a>
+            <div class="text-xl font-extrabold text-glow">GRADYN</div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-white/50">
+                <a href="#accounts" class="hover:text-white transition">Accounts</a>
+                <a href="#results" class="hover:text-white transition">Results</a>
                 <a href="#faq" class="hover:text-white transition">FAQ</a>
             </nav>
-            <button class="border border-white/20 px-5 py-2 rounded-full text-sm hover:bg-white hover:text-black transition duration-300">
-                Get Template
+            <button class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-sm hover:bg-white hover:text-black transition duration-300">
+                Get Access
             </button>
         </div>
     </header>
 
-    <main class="pt-20">
-        <section class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 glow-bg">
-            <div class="fade-in-up">
-                <span class="inline-block border border-white/10 bg-white/5 px-4 py-1 rounded-full text-xs font-medium mb-6">
-                    Crafting Unique Brand Identities
-                </span>
-                <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
-                    Branding that you <br><span class="text-white/40">need Indeed</span>
-                </h1>
-                <p class="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-                    Elevate your brand with custom identity and package design. Showcase your story through bold visuals and strategic design solutions.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <button class="bg-white text-black font-bold px-8 py-4 rounded-full hover:bg-gray-200 transition">Get Started Now</button>
-                    <button class="border border-white/20 font-bold px-8 py-4 rounded-full hover:bg-white/10 transition">See Projects</button>
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <div id="vanta-canvas"></div> <div class="z-10 mt-20">
+            <span class="inline-block border border-white/10 bg-white/5 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 text-white/70">
+                <span class="text-glow">⚡</span> Unleash Your Spending Power
+            </span>
+            
+            <h1 class="hero-title font-extrabold tracking-tighter mb-8 max-w-6xl mx-auto">
+                No Bans, Just<br><span>Premium Meta Accounts</span>
+            </h1>
+            
+            <p class="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-12">
+                Get dedicated, managed ad accounts with unlimited spending limits and 24/7 compliance support. Designed for agencies managing heavy volume.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-5 justify-center">
+                <button class="bg-white text-black font-bold px-10 py-5 rounded-full hover:scale-105 transition text-lg">Apply for Access</button>
+                <button class="bg-white/5 border border-white/10 font-bold px-10 py-5 rounded-full hover:bg-white/10 transition text-lg">See Results</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="py-32 bg-zinc-950/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-extrabold mb-16 tracking-tight text-glow">Agency Case Studies</h2>
+            
+            <div class="grid md:grid-cols-10 gap-6">
+                <div class="md:col-span-4 rounded-3xl overflow-hidden aspect-[4/5] bg-zinc-900 border border-white/5 group">
+                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
+                </div>
+                
+                <div class="md:col-span-6 flex flex-col gap-6">
+                    <div class="rounded-3xl overflow-hidden aspect-video bg-zinc-900 border border-white/5 group">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
+                    </div>
+                    
+                    <div class="rounded-3xl overflow-hidden aspect-video bg-zinc-900 border border-white/5 group relative">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-700">
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="py-20 border-y border-white/5 overflow-hidden">
-            <div class="marquee">
-                <div class="marquee-content uppercase font-bold text-2xl text-white/20 italic">
-                    <span>Asterisk</span> <span>Edoks</span> <span>Opal</span> <span>Dune</span> <span>Oasis</span> <span>Asterisk</span> <span>Edoks</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="py-32 max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="rounded-3xl overflow-hidden bg-zinc-900 aspect-square">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Meily" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition duration-700">
-                </div>
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">Meet Meily</h2>
-                    <p class="text-white/60 text-lg leading-relaxed mb-8">
-                        I'm a strategic brand designer focused on helping startups stand out through clean, modern, and high-impact visual systems. With over 8 years of experience, I bring a unique blend of creativity and business logic to every project.
-                    </p>
-                    <div class="grid grid-cols-2 gap-8">
+    <section id="accounts" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center text-5xl font-extrabold tracking-tight mb-4 leading-tight">Premium Meta Ad Accounts</h2>
+            <p class="text-center text-white/50 text-xl max-w-2xl mx-auto mb-20">Gradyn provides dedicated, agency-grade Meta accounts to remove spending bottlenecks and lower risk.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 items-center justify-center">
+                <div class="ad-card meta-card">
+                    <div class="flex items-center gap-4 mb-8">
+                        <img src="https://img.icons8.com/fluent/96/000000/facebook-new.png" class="w-16" alt="Meta Logo">
                         <div>
-                            <div class="text-3xl font-bold">150+</div>
-                            <div class="text-sm text-white/40 uppercase">Projects Done</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold">8+</div>
-                            <div class="text-sm text-white/40 uppercase">Years Experience</div>
+                            <div class="text-3xl font-bold">Gradyn Meta</div>
+                            <div class="text-sm text-white/40">Premium Agency Account</div>
                         </div>
                     </div>
+                    
+                    <ul class="space-y-4 text-white/70">
+                        <li><span class="check-icon">✔</span> Unlimited Spending Limits</li>
+                        <li><span class="check-icon">✔</span> Extremely Lower Risk Of Ban</li>
+                        <li><span class="check-icon">✔</span> Dedicated Compliance Manager</li>
+                        <li><span class="check-icon">✔</span> Priority Support from Meta Partner</li>
+                        <li><span class="check-icon">✔</span> Bank Transfers & Crypto</li>
+                        <li><span class="check-icon">✔</span> Active warm-up period</li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <section id="projects" class="py-20 bg-zinc-950/50">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex justify-between items-end mb-12">
-                    <h2 class="text-4xl font-bold">Selected Projects</h2>
-                    <button class="text-white/60 hover:text-white underline underline-offset-8">All Projects</button>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="group cursor-pointer">
-                        <div class="rounded-3xl overflow-hidden mb-4 bg-zinc-900 aspect-video relative">
-                            <img src="https://images.unsplash.com/photo-1634942537034-2531766767d7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        </div>
-                        <h3 class="text-xl font-bold">Urban Vision — Brand Identity</h3>
-                    </div>
-                    <div class="group cursor-pointer">
-                        <div class="rounded-3xl overflow-hidden mb-4 bg-zinc-900 aspect-video relative">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        </div>
-                        <h3 class="text-xl font-bold">Aura Water — Package Design</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="py-32 max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Answers</h2>
-            <div class="space-y-4">
-                <details class="glass-card rounded-2xl p-6 group">
-                    <summary class="list-none flex justify-between items-center cursor-pointer font-bold">
-                        How long does a typical project take?
-                        <span class="group-open:rotate-180 transition-transform">↓</span>
-                    </summary>
-                    <p class="pt-4 text-white/60">Typically 4-6 weeks depending on the complexity of the brand identity and the number of revisions needed.</p>
-                </details>
-                <details class="glass-card rounded-2xl p-6 group">
-                    <summary class="list-none flex justify-between items-center cursor-pointer font-bold">
-                        What is your pricing structure?
-                        <span class="group-open:rotate-180 transition-transform">↓</span>
-                    </summary>
-                    <p class="pt-4 text-white/60">We work on a project-based flat fee. Custom quotes are provided after the initial discovery call.</p>
-                </details>
-            </div>
-        </section>
-
-        <section class="py-32 px-6">
-            <div class="max-w-5xl mx-auto glass-card rounded-[3rem] p-16 text-center">
-                <h2 class="text-4xl md:text-6xl font-bold mb-8">Curious about what we can create together?</h2>
-                <button class="bg-white text-black font-bold px-10 py-5 rounded-full text-xl hover:scale-105 transition transform">Book a Free Call</button>
-                <p class="mt-8 text-white/40 italic">hello@framebase.design</p>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer class="py-12 border-t border-white/5 text-center text-white/20 text-sm">
-        <p>© 2026 Portfolite. All rights reserved. Built with Gemini Pro.</p>
+        <p>© 2026 Gradyn Agency. Premium Partners. Built with Gemini Pro.</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
+    <script>
+        // Start the moving Fog background
+        VANTA.FOG({
+          el: "#vanta-canvas",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          highlightColor: 0x3b82f6,
+          midtoneColor: 0x0,
+          lowlightColor: 0x0,
+          baseColor: 0x0,
+          blurFactor: 0.90,
+          speed: 1.50
+        });
+    </script>
 </body>
 </html>
