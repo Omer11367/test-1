@@ -3,198 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BETSCALE - Premium iGaming Agency Accounts</title>
+    <title>BETSCALE - Premium iGaming Agency Accounts - Isolated Laptop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --main-blue: #007bff; --bg-black: #000000; }
+        :root { --main-blue: #007bff; --bg-black: #000000; --card-bg: #0a0a0a; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-black); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Effects */
+        /* Typography & Effects */
         .hero-title { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; tracking-tighter; }
         .hero-title span { color: rgba(255, 255, 255, 0.4); }
-        .blue-accent { color: var(--main-blue); }
         .text-glow-blue { text-shadow: 0 0 25px rgba(0, 123, 255, 0.6); }
-        #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-
-        /* Laptop 3D Section */
-        .laptop-section { position: relative; min-height: 120vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #030303; padding: 100px 0; }
-        .laptop-wrapper { position: relative; width: 95%; max-width: 1300px; transition: transform 0.5s ease; }
-        .laptop-img { width: 100%; height: auto; display: block; filter: drop-shadow(0 0 80px rgba(0, 123, 255, 0.15)); }
+        .blue-accent { color: var(--main-blue); }
         
-        /* Screen Content */
-        .screen-content {
-            position: absolute;
-            top: 7.5%; left: 12.3%; width: 75.4%; height: 76%;
-            background: #080808; overflow-y: auto; padding: 3vw;
-            border-radius: 5px; border: 1px solid rgba(255,255,255,0.05);
+        /* Layout Elements */
+        #vanta-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.7; }
+        .full-width-section { width: 100%; max-width: 1400px; margin: 0 auto; px-6; }
+
+        /* Isolated Laptop Section Fix */
+        .laptop-section {
+            position: relative; min-h: 110vh; display: flex; flex-direction: column; items-center; justify-content: center;
+            padding: 10vh 0; background: #030303; overflow: hidden;
         }
-        .screen-content::-webkit-scrollbar { width: 4px; }
-        .screen-content::-webkit-scrollbar-thumb { background: var(--main-blue); border-radius: 10px; }
-
-        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
-        .feature-item { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px; }
-        .check-icon { color: #00FF19; font-weight: bold; font-size: 1.2rem; }
-
-        /* Free Value Grid */
-        .value-card { background: rgba(10, 10, 10, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; overflow: hidden; transition: 0.4s; cursor: pointer; }
-        .value-card:hover { transform: translateY(-10px); border-color: var(--main-blue); box-shadow: 0 20px 40px -10px rgba(0, 123, 255, 0.2); }
-
-        /* Article View with Sidebars (image_6 style) */
-        #article-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; overflow-y: auto; }
-        .article-container { display: flex; min-height: 100vh; }
-        .article-sidebar { width: 15vw; flex-shrink: 0; background: #050505; display: flex; flex-direction: column; items: center; padding-top: 10vh; opacity: 0.15; border-right: 1px solid rgba(255,255,255,0.03); }
-        .article-sidebar.right { border-right: none; border-left: 1px solid rgba(255,255,255,0.03); }
-        .sidebar-logo { font-size: 3vw; font-weight: 900; color: var(--main-blue); transform: rotate(90deg); margin-bottom: 15vh; white-space: nowrap; }
-        .article-main { flex-grow: 1; padding: 10vh 8%; max-width: 1100px; }
         
-        .article-content h1 { font-size: 4rem; font-weight: 800; margin-bottom: 2rem; tracking-tighter; }
-        .article-content h2 { font-size: 2rem; font-weight: 700; color: var(--main-blue); margin-top: 3rem; margin-bottom: 1.5rem; }
-        .article-content p { font-size: 1.2rem; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; }
-        .back-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 30px; border-radius: 50px; cursor: pointer; font-weight: 700; margin-bottom: 40px; }
+        /* Laptop Floating Container */
+        .laptop-wrapper {
+            position: relative;
+            width: 100%; max-width: 1200px; /* Expands to full screen width */
+            aspect-ratio: 16/9; /* MacBook aspect ratio */
+            transition: transform 0.5s ease-out; /* Add smooth floating effect */
+        }
+        .laptop-wrapper:hover {
+            transform: translateY(-10px) rotateX(2deg); /* Add perspective float on hover */
+        }
+        
+        /* Isolated Laptop Image (MacBook Pro) */
+        .laptop-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: contain; /* Keeps aspect ratio */
+            filter: drop-shadow(0 0 80px rgba(0, 123, 255, 0.15)); /* Add subtle blue glow behind laptop */
+        }
+        
+        /* Screen Inlay Mapping (Correctly matches perspective of an open MacBook) */
+        .laptop-screen-inlay {
+            position: absolute;
+            top: 6.5%; left: 8.5%; width: 83%; height: 86.5%; /* Correct perspective mapping for a MacBook screen */
+            background-color: var(--card-bg); /* Dark base for screen */
+            overflow: hidden; /* Hide anything outside screen */
+            border-radius: 4px; /* Screen corner radius */
+            padding: 3rem; /* Inside padding for screen content */
+            display: flex; flex-direction: column;
+        }
+        
+        /* Elements inside Screen */
+        .check-list-item { display: flex; items-center; padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid rgba(255,255,255,0.03); }
+        .check-icon { color: #00FF19; margin-right: 0.75rem; font-weight: bold; }
+
     </style>
 </head>
 <body>
 
     <header class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-extrabold blue-accent tracking-tighter text-glow-blue">BETSCALE</div>
-            <nav class="hidden md:flex space-x-10 text-sm font-medium text-white/40 uppercase tracking-widest">
+            <div class="text-2xl font-extrabold tracking-tighter text-glow-blue blue-accent">BETSCALE</div>
+            <nav class="hidden md:flex space-x-10 text-sm font-medium text-white/50">
                 <a href="#accounts" class="hover:text-white transition">Accounts</a>
                 <a href="#value" class="hover:text-white transition">Free Value</a>
-                <button class="bg-blue-600 px-6 py-2 rounded-full font-bold text-white shadow-[0_0_20px_rgba(0,123,255,0.3)]">Get Access</button>
+                <a href="#results" class="hover:text-white transition">Results</a>
             </nav>
+            <button class="bg-blue-600 px-7 py-2.5 rounded-full text-sm font-bold hover:bg-blue-500 transition duration-300 shadow-[0_0_20px_rgba(0,123,255,0.4)]">
+                Get Access
+            </button>
         </div>
     </header>
 
     <div id="main-content">
-        <section class="relative h-screen flex flex-col items-center justify-center text-center px-6">
+        <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
             <div id="vanta-canvas"></div>
-            <div class="z-10">
-                <h1 class="hero-title font-extrabold tracking-tighter mb-8">
+            <div class="z-10 mt-10">
+                <span class="inline-block border border-white/10 bg-white/5 px-5 py-2 rounded-full text-xs font-bold mb-8 text-white/80 tracking-widest uppercase">
+                    <span class="blue-accent">●</span> The Gold Standard for iGaming Scaling
+                </span>
+                <h1 class="hero-title font-extrabold tracking-tighter mb-8 max-w-7xl mx-auto leading-[0.85]">
                     Premium Agency Accounts<br><span>for gambling</span>
                 </h1>
-                <p class="text-white/60 text-xl md:text-2xl max-w-3xl mx-auto mb-12">
+                <p class="text-white/60 text-xl md:text-2xl max-w-3xl mx-auto mb-14 font-medium leading-relaxed">
                     Access dedicated, <span class="text-white border-b border-blue-500">White listed</span> Meta ad accounts with 24/7 compliance support. Built for aggressive scaling in high-risk verticals.
                 </p>
-                <div class="flex gap-6 justify-center">
-                    <button class="bg-white text-black px-12 py-5 rounded-full font-black text-xl hover:scale-105 transition">Apply for Access</button>
-                    <button class="border border-white/20 px-12 py-5 rounded-full font-black text-xl hover:bg-white/5 transition">Join Telegram</button>
+                <div class="flex flex-col md:flex-row gap-6 justify-center">
+                    <button class="bg-white text-black font-extrabold px-12 py-6 rounded-full hover:scale-105 transition text-xl shadow-xl">Get Started Now</button>
+                    <button class="bg-transparent border-2 border-white/20 font-extrabold px-12 py-6 rounded-full hover:bg-white/5 transition text-xl">View Pricing</button>
                 </div>
             </div>
         </section>
 
-        <section id="accounts" class="laptop-section">
-            <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-7xl font-black text-glow-blue mb-4">Premium Agency Solutions</h2>
-                <p class="text-white/30 text-xl">Inside our infrastructure</p>
+        <section id="accounts" class="laptop-section px-10">
+            <div class="max-w-[1500px] w-full mx-auto mb-20">
+                <h2 class="text-6xl md:text-8xl font-black tracking-tighter text-glow-blue leading-none mb-6">Premium Ad Accounts</h2>
+                <p class="text-white/40 text-2xl max-w-2xl font-medium">Unlocking unlimited potential across every platform.</p>
             </div>
             
             <div class="laptop-wrapper">
-                <img src="https://www.pngmart.com/files/1/Laptop-PNG-Transparent-Image.png" class="laptop-img">
-                <div class="screen-content">
-                    <div class="flex items-center gap-6 mb-10 border-b border-white/5 pb-8">
-                        <div class="text-5xl">♾️</div>
+                <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?auto=format&fit=crop&q=80&w=1200" alt="Isolated 3D Laptop" class="laptop-img">
+                
+                <div class="laptop-screen-inlay">
+                    <div class="flex items-center gap-6 mb-12 border-b border-white/5 pb-8">
+                        <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-4xl shadow-[0_0_20px_rgba(0,123,255,0.4)]">♾️</div>
                         <div>
-                            <h3 class="text-4xl font-bold">Meta Priority</h3>
-                            <p class="blue-accent font-bold uppercase text-xs tracking-widest">Global Ad Infrastructure</p>
+                            <h3 class="text-4xl font-extrabold text-white leading-none mb-1">Betscale Meta</h3>
+                            <p class="text-blue-500 font-bold tracking-widest uppercase text-xs">Priority Ad accounts</p>
                         </div>
                     </div>
                     
-                    <div class="feature-grid">
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">US accounts</span></div>
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">No limit</span></div>
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Onboard under 12 hours</span></div>
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Free and unlimited replacements</span></div>
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Dedicated Compliance Manager</span></div>
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">24/7 Priority Support</span></div>
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">Bank Transfers & Crypto Funding</span></div>
-                        <div class="feature-item"><span class="check-icon">✔</span> <span class="font-bold">White-listed BM Assets</span></div>
+                    <div class="grid md:grid-cols-2 gap-4 w-full">
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">Unlimited Spending Limits</span></div>
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">Extreme Low Risk Of Ban</span></div>
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">Dedicated Compliance Manager</span></div>
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">Personal Account Managers</span></div>
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">24/7 Priority VIP Support</span></div>
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">Bank Transfers & Crypto Funding</span></div>
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">Global Onboarding < 24h</span></div>
+                        <div class="check-list-item"><span class="check-icon">✔</span> <span class="font-semibold text-white/90">White-listed BM Infrastructure</span></div>
                     </div>
+                    
+                    <div class="absolute top-8 right-8 bg-black/50 border border-green-500/20 px-4 py-1 rounded-full text-xs text-green-500 font-bold uppercase tracking-wider">Status: Active</div>
                 </div>
             </div>
         </section>
 
-        <section id="value" class="py-40 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="mb-20">
-                    <span class="blue-accent font-black uppercase text-sm tracking-widest">Knowledge Base</span>
-                    <h2 class="text-6xl font-black tracking-tighter text-glow-blue">Free Value</h2>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-10">
-                    <div class="value-card" onclick="openArticle('cloaking')">
-                        <img src="https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=600" class="w-full h-56 object-cover grayscale hover:grayscale-0 transition duration-500">
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-4">iGaming Cloaking 2026</h3>
-                            <p class="text-white/50 text-sm">Server-side rendering framework for gambling ads.</p>
-                        </div>
-                    </div>
-                    <div class="value-card" onclick="openArticle('scaling')">
-                        <img src="https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=600" class="w-full h-56 object-cover grayscale hover:grayscale-0 transition duration-500">
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-4">Scaling to $100K/Day</h3>
-                            <p class="text-white/50 text-sm">Aggressive scaling on high-limit accounts.</p>
-                        </div>
-                    </div>
-                    <div class="value-card" onclick="openArticle('warmup')">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600" class="w-full h-56 object-cover grayscale hover:grayscale-0 transition duration-500">
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-4">Anti-Ban Architecture</h3>
-                            <p class="text-white/50 text-sm">Protecting pixels and assets in mass sweeps.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="article-view">
-        <div class="article-container">
-            <div class="article-sidebar">
-                <div class="sidebar-logo">BETSCALE</div>
-                <div class="sidebar-logo">BETSCALE</div>
-            </div>
-            
-            <div class="article-main">
-                <button class="back-btn" onclick="closeArticle()">← Back to Site</button>
-                <div id="article-data" class="article-content"></div>
-            </div>
-            
-            <div class="article-sidebar right">
-                <div class="sidebar-logo" style="transform: rotate(-90deg)">BETSCALE</div>
-                <div class="sidebar-logo" style="transform: rotate(-90deg)">BETSCALE</div>
-            </div>
         </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
     <script>
-        VANTA.FOG({ el: "#vanta-canvas", mouseControls: true, touchControls: true, highlightColor: 0x007bff, midtoneColor: 0x0, lowlightColor: 0x0, baseColor: 0x0, blurFactor: 0.9, speed: 2.0 });
-
-        const articles = {
-            cloaking: `<h1>Mastering iGaming Cloaking 2026</h1>
-                <p>Running gambling offers requires a multi-layered cloaking approach. In 2026, Meta uses AI to identify redirect patterns. Our framework focuses on <strong>Server-Side Rendering (SSR)</strong>.</p>
-                <h2>1. White Page Strategy</h2>
-                <p>Build fully functional "Sports Tech" sites. Meta's bots check for image uniqueness—if your stock photo is used on banned sites, you're flagged.</p>`,
-            scaling: `<h1>Road to $100K/Day Scaling</h1>
-                <p>Scaling to $100K/day is about the <strong>Trust Score</strong>. Spend jumps should not exceed 40% daily for the first 5 days.</p>`,
-            warmup: `<h1>Anti-Ban BM Architecture</h1>
-                <p>Isolation is key. Never house your Pixel and Ad Account in the same BM without shielding.</p>`
-        };
-
-        function openArticle(id) {
-            document.getElementById('article-data').innerHTML = articles[id];
-            document.getElementById('main-content').style.display = 'none';
-            document.getElementById('article-view').style.display = 'block';
-            window.scrollTo(0,0);
-        }
-
-        function closeArticle() {
-            document.getElementById('article-view').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-        }
+        VANTA.FOG({
+          el: "#vanta-canvas",
+          mouseControls: true, touchControls: true, minHeight: 200.00, minWidth: 200.00,
+          highlightColor: 0x007bff, midtoneColor: 0x0, lowlightColor: 0x0, baseColor: 0x0,
+          blurFactor: 0.9, speed: 2.5 
+        });
     </script>
 </body>
 </html>
